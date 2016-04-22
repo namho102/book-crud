@@ -15,17 +15,17 @@ router
         });
     })
 
-.post(function(req, res) {
-    var book = new Book(req.body);
-    console.log(req.body);
-    book.save(function(err) {
-        if (err)
-            res.send(err);
-        res.send({
-            message: 'Book Added'
+    .post(function(req, res) {
+        var book = new Book(req.body);
+        console.log(req.body);
+        book.save(function(err) {
+            if (err)
+                res.send(err);
+            res.send({
+                message: 'Book Added'
+            });
         });
     });
-});
 
 router.route('/books/:id')
     .put(function(req, res) {
@@ -53,28 +53,28 @@ router.route('/books/:id')
         });
     })
 
-.get(function(req, res) {
-    Book.findOne({
-        _id: req.params.id
-    }, function(err, book) {
-        if (err)
-            res.send(err);
+    .get(function(req, res) {
+        Book.findOne({
+            _id: req.params.id
+        }, function(err, book) {
+            if (err)
+                res.send(err);
 
-        res.json(book);
-    });
-})
+            res.json(book);
+        });
+    })
 
-.delete(function(req, res) {
-    Book.remove({
-        _id: req.params.id
-    }, function(err, book) {
-        if (err)
-            res.send(err);
+    .delete(function(req, res) {
+        Book.remove({
+            _id: req.params.id
+        }, function(err, book) {
+            if (err)
+                res.send(err);
 
-        res.json({
-            message: 'Successfully deleted'
+            res.json({
+                message: 'Successfully deleted'
+            });
         });
     });
-});
 
 module.exports = router;
